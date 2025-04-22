@@ -1,16 +1,52 @@
 .nav{
+    height: 70px;
     background-image: url("navbar.png");
-    height: 70px
+    opacity: 0.5;
 }
-.nav h1{
-    color: white;
+.navWrapper{
+    background-color: black;
+    height: 70px;
+}
+.navHeader{
     font-size: 35px;
-    position: absolute;
+    /* position: absolute;
     top: 15px;
-    left: 10px
+    left: 10px; */
+    opacity: 2;
+    color: white;
+}
+.navHeaders{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top:15px;
+    left: 10px;
+    justify-content: flex-start;
+    gap: 20px;
+    width: 99vw;
+}
+
+.otherHeader{
+    color: white;
+    font-size: 25px;
+    text-decoration: none;
 }
 *{
     margin: 0;
     padding: 0;
     font-family: calibri;
+}
+
+.paddingOverride{
+    padding: 10px;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    color:white;
+    background-color: rgb(36, 44, 164);
 }
