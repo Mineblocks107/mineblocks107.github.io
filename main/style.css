@@ -3,6 +3,13 @@
     background-image: url("navbar.png");
     opacity: 0.5;
 }
+.contain{
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 316px;
+    margin: 10px;
+}
+
 .navWrapper{
     background-color: black;
     height: 70px;
@@ -29,7 +36,13 @@
 .otherHeader{
     color: white;
     font-size: 25px;
+}
+.aFixer{
     text-decoration: none;
+}
+
+.blacker{
+    color: black;
 }
 *{
     margin: 0;
@@ -42,8 +55,8 @@
 }
 
 footer{
-    position: absolute;
-    bottom: 0;
+    /* position: absolute;
+    bottom: 0; */
     display: flex;
     justify-content: center;
     width: 100vw;
