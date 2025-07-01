@@ -59,7 +59,9 @@ footer{
     bottom: 0; */
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100vw;
     color:white;
     background-color: rgb(36, 44, 164);
+    height: 40px;
 }
