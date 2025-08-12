@@ -1,24 +1,18 @@
 // @ts-nocheck
-// main.ts - Simple Deno Deploy CORS Proxy
-// Usage: https://your-proxy.deno.dev/?url=https://target-site.com/api
+// main.ts — Minimal Deno Deploy CORS Proxy
 
-import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
-
-serve(async (req) => {
+Deno.serve(async (req) => {
   const { searchParams } = new URL(req.url);
-
-  // Get the ?url= parameter
   const target = searchParams.get("url");
+
   if (!target) {
     return new Response("Missing 'url' parameter", { status: 400 });
   }
 
   try {
-    // Forward the request to the target URL
     const res = await fetch(target, {
       method: req.method,
       headers: {
-        // Spoof headers like ReqBin
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
         "Accept": "application/json",
         "Referer": "https://aisv6.amizone.net/",
@@ -30,7 +24,7 @@ serve(async (req) => {
           : undefined
     });
 
-    // Return the response with CORS headers
+    // Always return with CORS headers
     return new Response(await res.text(), {
       status: res.status,
       headers: {
