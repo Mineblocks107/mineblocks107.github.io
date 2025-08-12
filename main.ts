@@ -1,41 +1,47 @@
 // @ts-nocheck
-// main.ts — Minimal Deno Deploy CORS Proxy
-
+// main.ts
 Deno.serve(async (req) => {
-  const { searchParams } = new URL(req.url);
-  const target = searchParams.get("url");
+  const url = new URL(req.url);
 
+  // Allow CORS for all responses
+  const corsHeaders = {
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
+    "Access-Control-Allow-Headers": "*",
+  };
+
+  // Handle preflight OPTIONS requests
+  if (req.method === "OPTIONS") {
+    return new Response(null, { headers: corsHeaders });
+  }
+
+  // Extract target URL from ?url=...
+  const target = url.searchParams.get("url");
   if (!target) {
-    return new Response("Missing 'url' parameter", { status: 400 });
+    return new Response("Missing 'url' query parameter", {
+      status: 400,
+      headers: corsHeaders,
+    });
   }
 
   try {
+    // Forward the request
     const res = await fetch(target, {
       method: req.method,
-      headers: {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
-        "Accept": "application/json",
-        "Referer": "https://aisv6.amizone.net/",
-        "Origin": "https://aisv6.amizone.net"
-      },
-      body:
-        req.method !== "GET" && req.method !== "HEAD"
-          ? await req.text()
-          : undefined
+      headers: req.headers,
+      body: req.method !== "GET" && req.method !== "HEAD" ? await req.text() : undefined,
     });
 
-    // Always return with CORS headers
-    return new Response(await res.text(), {
+    // Relay the response with CORS headers
+    const body = await res.text();
+    return new Response(body, {
       status: res.status,
       headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "*",
-        "Content-Type": res.headers.get("content-type") || "text/plain"
-      }
+        ...corsHeaders,
+        "Content-Type": res.headers.get("content-type") ?? "text/plain",
+      },
     });
-
   } catch (err) {
-    return new Response(`Error: ${err.message}`, { status: 500 });
+    return new Response(`Error: ${err.message}`, { status: 500, headers: corsHeaders });
   }
 });
