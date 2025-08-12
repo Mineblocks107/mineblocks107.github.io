@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Hello</title>
+	<link rel="stylesheet" href="../main/style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<iframe src="../main/header.html" frameborder="0" height="70px" width="100%"></iframe>
+	<!-- Main code goes here -->
+    <h1>Welcome to the remake of <a href="aisv6.amizone.net">aisv6.amizone.net</a>!</h1>
+    <form onsubmit="submitForm(); return false">
+        <br>
+        <p>Please enter your id:</p>
+        <input type="number" name="" id="username">
+        <br>
+        <br>
+        <p>Please enter your password:</p>
+        <input type="password" id="password">
+        <br>
+        <br>
+        <input type="submit" value="Log in" class="">
+    </form>
+    <br>
+	<!-- Till here -->
+	<iframe src="../main/footer.html" height="40px" width="99.8%" id="footer"></iframe>
+    <script>
+        async function submitForm(){
+            var dataToSend = {
+                "LoginName": document.getElementById("username").value,
+                "LoginPassword": document.getElementById("password").value
+
+            };
+            fetch("https://api.allorigins.win/post?url=https://aisv6.amizone.net/Login/Getuserbyid", {
+                method: "post",
+                headers: {
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+                    "Accept": "application/json",
+                    "Origin": "https://aisv6.amizone.net",
+                    "Referer": "https://aisv6.amizone.net/"
+                },
+                body: JSON.stringify(dataToSend)
+            })
+            .then(response=>{
+                return response.json()
+            })
+            .then(data=>{
+                console.log(data)
+            }
+
+            )
+        }
+    </script>
+</body>
+<script src="../main/main.js"></script>
+</html>
