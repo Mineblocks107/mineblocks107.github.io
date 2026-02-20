@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Score Increaser</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 id="score">LOAdINg</h1>
+    <h2 id="inc">LOADING</h2>
+    <button class="mainButt" onclick="score += button[0]">Click Me!</button>
+    <div class="upgrades">
+        <div class="upgrade">
+            <div class="stat">
+                <h3>Button:</h3>
+                <p class="sen" id="butts"></p>
+            </div>
+            
+            <button class="upbutton" onclick="upgradeEle(button)">Upgrade!</button>
+
+            <div class="stat">
+                <p>Level:</p>
+                <p class="sen" id="buttl">CALCULATING</p>
+            </div>
+            <div class="stat">
+                <p>Cost:</p>
+                <p class="sen" id="buttc">CALCULATING</p>
+            </div>
+        </div>
+
+        <div class="upgrade">
+            <div class="stat">
+                <h3>Cursor:</h3>
+                <p class="sen" id="curs">/S</p>
+            </div>
+            
+            <button class="upbutton" onclick="upgradeEle(cursor)">Upgrade!</button>
+
+            <div class="stat">
+                <p>Level:</p>
+                <p class="sen" id="curl">CALCULATING</p>
+            </div>
+            <div class="stat">
+                <p>Cost:</p>
+                <p class="sen" id="curc">CALCULATING</p>
+            </div>
+        </div>
+
+        <div class="upgrade">
+            <div class="stat">
+                <h3>Mouse:</h3>
+                <p class="sen" id="mous">/S</p>
+            </div>
+
+            <button class="upbutton" onclick="upgradeEle(mouse)">Upgrade!</button>
+
+            <div class="stat">
+                <p>Level:</p>
+                <p class="sen" id="moul">CALCULATING</p>
+            </div>
+            <div class="stat">
+                <p>Cost:</p>
+                <p class="sen" id="mouc">CALCULATING</p>
+            </div>
+        </div>
+    </div>
+    <button onclick="score *= score">debug</button>
+</body>
+<script src="script.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1636786477682008" crossorigin="anonymous"></script>
+</html>
